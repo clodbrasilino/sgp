@@ -1,2 +1,2 @@
-# sgp
-Sistema de Gerenciamento de Professores desenvolvido sob demanda para o Instituto Federal do PiauÃ­ campus ParnaÃ­ba
+# SGP
+Sistema de Gerenciamento de Professores desenvolvido sob demanda para o Instituto Federal do Piauí campus Parnaíba
