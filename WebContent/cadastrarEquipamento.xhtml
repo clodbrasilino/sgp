@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/template/layout.xhtml">
+	<ui:define name="content">
+		<h:dataTable value="#{equipamentoBean.listaDeEquipamentos}" var="equipamento">
+			<h:message for="outcome"></h:message>
+			<h:column>		
+   				<f:facet name="header">ID</f:facet>
+   				#{equipamento.id}
+   			</h:column>
+   			<h:column>		
+   				<f:facet name="header">Nome</f:facet>
+   				#{equipamento.nome}
+   			</h:column>
+   			<h:column>		
+   				<f:facet name="header">Está disponível?</f:facet>
+   				#{equipamento.disponivel?"Sim":"Não"}
+   			</h:column>
+   			<h:column>
+   				<f:facet name="header">Excluir</f:facet>
+   				<h:form id="equipamentoRemoverForm">
+   					<h:commandButton value="Excluir" action="#{equipamentoBean.removerEquipamento}">
+   						<f:param name="equipamento" value="#{equipamento.id}"/>
+   					</h:commandButton>
+   					<h:message for="equipamentoRemoverForm"></h:message>
+   				</h:form>
+   			</h:column>
+		</h:dataTable>
+		<br/>
+		Adicionar Equipamento:<br/>
+		<h:form id="equipamentoForm">
+			<h:message for="equipamentoForm"/>
+			<br/>
+			<h:outputText value="Nome:"/>
+			<h:inputText value="#{equipamentoBean.nome}"/>
+			<br/>
+			<h:outputText value="Disponível?"/>
+			<h:selectBooleanCheckbox value="#{equipamentoBean.disponibilidade}"/>
+			<br/>
+			<h:commandButton value="Cadastrar" action="#{equipamentoBean.adicionarEquipamento}"/>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

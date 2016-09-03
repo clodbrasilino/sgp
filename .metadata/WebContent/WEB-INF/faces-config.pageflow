@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14722477344550" configfile="/sgp/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="178" id="pf14728575460562" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14728575460563" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cadastrarEquipamento.xhtml" x="338" y="178" id="pf14728575460564" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" outlinks="pf14728607423555" inlinks="pf14728575460563 pf14728607423555" path="/cadastrarEquipamento.xhtml"/>
+  <links id="pf14728575460563" target="pf14728575460564" source="pf14728575460562" outcome="cadastrarEquipamento"/>
+  <links id="pf14728607423555" target="pf14728575460564" source="pf14728575460564" outcome="cadastrarEquipamento">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+</pageflow:Pageflow>
