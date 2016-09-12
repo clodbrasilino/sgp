@@ -8,10 +8,24 @@
 
 <ui:composition template="/template/layout.xhtml">
 	<ui:define name="content">
-	    Bem-vindo!
-	    <h:form>
-	    	<h:commandButton value="Cadastrar Equipamento" action="cadastrarEquipamento"/>
-	    </h:form>
+		<div class="formCorpo" align="center">
+			<h:outputLabel value="Faça seu Login"/>
+			<h:form id="usuarioForm" >
+				<h:outputText value="Login: "/>
+				<h:inputText value="#{usuarioBean.login}" requiredMessage="Informe o seu login" required="true"/>
+				<br/>
+				<br/>
+				<h:outputText value="SIAPE:"/>
+				<h:inputText value="#{usuarioBean.siape}" requiredMessage="Informe o seu SIAPE" rendered="true"/>
+				<br/>
+				<br/>
+				<h:commandButton value="Entrar" action="#{usuarioBean.fazerLogin}"/>
+				<br/>
+				<br/>
+				<h:link value="Cadastre-se" rendered="true"/>
+				<h:messages for="usuarioForm"></h:messages>
+			</h:form>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

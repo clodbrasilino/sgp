@@ -20,6 +20,8 @@ public class EquipamentoDAOImpl implements EquipamentoDAO {
 			entityManager.getTransaction().commit();
 		} catch(Exception ex){
 			entityManager.getTransaction().rollback();
+		}finally {
+			JPAConexao.closeEntityManager();
 		}
 		
 	}
@@ -38,6 +40,8 @@ public class EquipamentoDAOImpl implements EquipamentoDAO {
 			entityManager.getTransaction().commit();
 		} catch(Exception ex){
 			entityManager.getTransaction().rollback();
+		}finally {
+			JPAConexao.closeEntityManager();
 		}
 	}
 

@@ -44,13 +44,17 @@ public class EquipamentoBean implements Serializable {
 	}
     
 	public String adicionarEquipamento() {
-		try{
-			Equipamento e = new Equipamento();
-			e.setNome(nome);
-			e.setDisponivel(disponibilidade);
-			this.equipamentoDAO.adicionarEquipamento(e);
-			this.listaDeEquipamentos.add(e);
-			FacesContext.getCurrentInstance().addMessage("equipamentoForm", new FacesMessage(FacesMessage.SEVERITY_INFO,"Objeto adicionado com sucesso!", ""));
+		try{	
+			if(nome.isEmpty()){
+				FacesContext.getCurrentInstance().addMessage("equipamentoForm", new FacesMessage(FacesMessage.SEVERITY_INFO,"O objeto não pode ser nulo!",""));
+			}else{
+				Equipamento e = new Equipamento();
+				e.setNome(nome);
+				e.setDisponivel(disponibilidade);
+				this.equipamentoDAO.adicionarEquipamento(e);
+				this.listaDeEquipamentos.add(e);
+				FacesContext.getCurrentInstance().addMessage("equipamentoForm", new FacesMessage(FacesMessage.SEVERITY_INFO,"Objeto adicionado com sucesso!", ""));
+			}
 		}catch(Exception e){
 			FacesContext.getCurrentInstance().addMessage("equipamentoForm", new FacesMessage(FacesMessage.SEVERITY_WARN,"Erro ao adicionar objeto!", e.toString()));
 		}finally{

@@ -8,43 +8,49 @@
 
 <ui:composition template="/template/layout.xhtml">
 	<ui:define name="content">
-		<h:dataTable value="#{equipamentoBean.listaDeEquipamentos}" var="equipamento">
-			<h:message for="outcome"></h:message>
-			<h:column>		
-   				<f:facet name="header">ID</f:facet>
-   				#{equipamento.id}
-   			</h:column>
-   			<h:column>		
-   				<f:facet name="header">Nome</f:facet>
-   				#{equipamento.nome}
-   			</h:column>
-   			<h:column>		
-   				<f:facet name="header">Está disponível?</f:facet>
-   				#{equipamento.disponivel?"Sim":"Não"}
-   			</h:column>
-   			<h:column>
-   				<f:facet name="header">Excluir</f:facet>
-   				<h:form id="equipamentoRemoverForm">
-   					<h:commandButton value="Excluir" action="#{equipamentoBean.removerEquipamento}">
-   						<f:param name="equipamento" value="#{equipamento.id}"/>
-   					</h:commandButton>
-   					<h:message for="equipamentoRemoverForm"></h:message>
-   				</h:form>
-   			</h:column>
-		</h:dataTable>
-		<br/>
-		Adicionar Equipamento:<br/>
-		<h:form id="equipamentoForm">
-			<h:message for="equipamentoForm"/>
+		<div class="formCorpo" align="center">
+			<h:dataTable value="#{equipamentoBean.listaDeEquipamentos}" var="equipamento" border="1" style="text-align:center;">
+				<h:column>		
+	   				<f:facet name="header">ID</f:facet>
+	   				#{equipamento.id}
+	   			</h:column>
+	   			<h:column>		
+	   				<f:facet name="header">Nome</f:facet>
+	   				#{equipamento.nome}
+	   			</h:column>
+	   			<h:column>		
+	   				<f:facet name="header">Está disponível?</f:facet>
+	   				#{equipamento.disponivel?"Sim":"Não"}
+	   			</h:column>
+	   			<h:column>
+	   				<f:facet name="header">Excluir</f:facet>
+	   				<h:form id="equipamentoRemoverForm">
+	   					<h:commandButton value="Excluir" action="#{equipamentoBean.removerEquipamento}">
+	   						<f:param name="equipamento" value="#{equipamento.id}"/>
+	   					</h:commandButton>
+	   					<h:message for="equipamentoRemoverForm"></h:message>
+	   				</h:form>
+	   			</h:column>
+			</h:dataTable>
 			<br/>
-			<h:outputText value="Nome:"/>
-			<h:inputText value="#{equipamentoBean.nome}"/>
 			<br/>
-			<h:outputText value="Disponível?"/>
-			<h:selectBooleanCheckbox value="#{equipamentoBean.disponibilidade}"/>
+		</div>
+		<div class="formCorpo" align="center">
+			<h:outputLabel>Adicionar Equipamento:</h:outputLabel>
+			<h:form id="equipamentoForm">
+				<h:message for="equipamentoForm"/>
+				<br/>
+				<h:outputText value="Nome: "/>
+				<h:inputText value="#{equipamentoBean.nome}"/>
+				<br/>
+				<h:outputText value="Disponível? "/>
+				<h:selectBooleanCheckbox value="#{equipamentoBean.disponibilidade}"/>
+				<br/>
+				<h:commandButton value="Cadastrar" action="#{equipamentoBean.adicionarEquipamento}"/>
+				<h:messages for="equipamentoForm"></h:messages>
+			</h:form>
 			<br/>
-			<h:commandButton value="Cadastrar" action="#{equipamentoBean.adicionarEquipamento}"/>
-		</h:form>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>
