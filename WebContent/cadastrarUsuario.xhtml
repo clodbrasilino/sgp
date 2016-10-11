@@ -8,6 +8,7 @@
 
 <ui:composition template="/template/layout.xhtml">
 	<ui:define name="content">
+		<div class="formCorpo" align="center">
 			<h:outputLabel>Cadastrar Usuário</h:outputLabel>
 			<br /> <br />
 			<h:form id="usuarioForm">
@@ -22,12 +23,13 @@
 				<h:outputText value="SIAPE: " />
 				<h:inputText value="#{usuarioBean.siape}" />
 				<br />
-				
+				<br />
 				<h:commandButton value="Cadastrar"
 					action="#{usuarioBean.adicionarUsuario}" />
 			</h:form>
-		<h:messages for="usuarioForm"></h:messages>
-		<br />
+			<h:messages for="usuarioForm"></h:messages>
+			<br />
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

@@ -14,10 +14,9 @@ public interface UsuarioDAO {
 	
 	public Usuario buscarUsuarioPorId (long idUsuario);
 	
-	public Usuario buscarUsuario(Usuario usuario);
+	public Usuario buscarUsuarioNomeSenha(String nomeUsuario, String senha);
 	
     public List<Usuario> listaUsuario();
     
     public List<Usuario> pesquisarUsuario(String nome);
-    
 }

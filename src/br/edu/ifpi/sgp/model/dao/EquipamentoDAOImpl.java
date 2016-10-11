@@ -3,25 +3,25 @@ package br.edu.ifpi.sgp.model.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
 
 import br.edu.ifpi.sgp.model.entity.Equipamento;
 
 public class EquipamentoDAOImpl implements EquipamentoDAO {
 
-	EntityManager entityManager = Persistence.createEntityManagerFactory("sgp").createEntityManager();
+	EntityManager entityManager;
 	
 	@Override
 	public void adicionarEquipamento(Equipamento e) {
 		// TODO Auto-generated method stub
 		try{
+			entityManager = JPAConexao.getEntityManager();
 			entityManager.getTransaction().begin();
 			entityManager.persist(e);
 			entityManager.getTransaction().commit();
 		} catch(Exception ex){
 			entityManager.getTransaction().rollback();
 		}finally {
-			JPAConexao.closeEntityManager();
+			if(JPAConexao.isEntityManagerOpen()) JPAConexao.closeEntityManager();
 		}
 		
 	}

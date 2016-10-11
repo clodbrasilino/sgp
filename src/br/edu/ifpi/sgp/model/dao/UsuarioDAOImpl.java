@@ -3,8 +3,7 @@ package br.edu.ifpi.sgp.model.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.NoResultException;
 
 import br.edu.ifpi.sgp.model.entity.Usuario;
 
@@ -12,33 +11,35 @@ import br.edu.ifpi.sgp.model.entity.Usuario;
  * @author Patrick
  *
  */
-public class UsuarioDAOImpl  implements UsuarioDAO{
+public class UsuarioDAOImpl implements UsuarioDAO {
 
-	EntityManager entityManager = Persistence.createEntityManagerFactory("sgp").createEntityManager();
+	EntityManager entityManager;
 
 	@Override
 	public void adicionarUsuario(Usuario usuario) {
-		try{
+		try {
+			entityManager = JPAConexao.getEntityManager();
 			entityManager.getTransaction().begin();
 			entityManager.persist(usuario);
 			entityManager.getTransaction().commit();
-		} catch(Exception ex){
+		} catch (Exception ex) {
 			entityManager.getTransaction().rollback();
-		}finally {
-			JPAConexao.closeEntityManager();
+		} finally {
+			if (JPAConexao.isEntityManagerOpen())
+				JPAConexao.closeEntityManager();
 		}
 	}
 
 	@Override
 	public void excluirUsuario(Usuario usuario) {
-		try{
+		try {
 			entityManager.getTransaction().begin();
 			Usuario aSerApagado = buscarUsuarioPorId(usuario.getIdUsuario());
 			entityManager.remove(aSerApagado);
 			entityManager.getTransaction().commit();
-		} catch(Exception ex){
+		} catch (Exception ex) {
 			entityManager.getTransaction().rollback();
-		}finally {
+		} finally {
 			JPAConexao.closeEntityManager();
 		}
 	}
@@ -54,9 +55,17 @@ public class UsuarioDAOImpl  implements UsuarioDAO{
 	}
 
 	@Override
-	public Usuario buscarUsuario(Usuario usuario) {
-		
-		return null;
+	public Usuario buscarUsuarioNomeSenha(String login, String siape){
+		try {
+			Usuario usuario = (Usuario) entityManager
+					.createQuery("SELECT u from Usuario u where u.login = :login and u.siape = :siape")
+					.setParameter("login", login).setParameter("siape", siape).getSingleResult();
+			System.out.println("usuario -> " + usuario.toString());
+			return usuario;
+		} catch (NullPointerException e) {
+			System.out.println("erro -> " + e.toString());
+			return null;
+		}
 	}
 
 	@Override

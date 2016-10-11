@@ -21,7 +21,13 @@
 	  <name>Spring Framework Maven Release Repository</name>
 	  <url>http://maven.springframework.org/release</url>
 	</repository>
-  </repositories>
+       <repository>
+       		<id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+		</repository>
+   </repositories>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -78,6 +84,12 @@
 	    <groupId>org.glassfish</groupId>
 	    <artifactId>javax.faces</artifactId>
 	    <version>2.2.13</version>
-	</dependency>	
+	</dependency>
+	 <dependency>
+         <groupId>org.primefaces</groupId>
+         <artifactId>primefaces</artifactId>
+         <version>6.0</version>
+	</dependency>
   </dependencies>
+  
 </project>

@@ -1,30 +1,26 @@
 package br.edu.ifpi.sgp.model.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id @GeneratedValue
 	private long idUsuario;
 	private String nome;
 	private String login;
-	private String siape;
+	private String siape;    
 	private boolean status = true;
-	@ManyToMany(mappedBy="listUsuario")
-	private List<Categoria> listCategoria;
 	
 	public Usuario() {
 	}
 
+	@Id @GeneratedValue
 	public long getIdUsuario() {
 		return idUsuario;
 	}
@@ -40,7 +36,7 @@ public class Usuario implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	@Column(name="siape", nullable=false, unique=false)
 	public String getSiape() {
 		return siape;
 	}
@@ -48,7 +44,7 @@ public class Usuario implements Serializable{
 	public void setSiape(String siape) {
 		this.siape = siape;
 	}
-
+ 
 	public boolean isStatus() {
 		return status;
 	}
@@ -57,21 +53,13 @@ public class Usuario implements Serializable{
 		this.status = status;
 	}
 
-	
+	@Column(name="login", nullable=false, unique=true)
 	public String getLogin() {
 		return login;
 	}
 
 	public void setLogin(String login) {
 		this.login = login;
-	}
-	
-	public List<Categoria> getListCategoria() {
-		return listCategoria;
-	}
-
-	public void setListCategoria(List<Categoria> listCategoria) {
-		this.listCategoria = listCategoria;
 	}
 
 	@Override

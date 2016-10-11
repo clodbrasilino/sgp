@@ -13,9 +13,9 @@ import javax.persistence.Id;
  *
  * @author Agustin
  */
-@Entity
+//@Entity
 public class Professor{
-    @Id
+    //@Id
     private long idProfessor ;
     private String nome;
     private Materia materia;

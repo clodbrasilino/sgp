@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#cadastrarUsuario.xhtml"
+  PATH="/cadastrarUsuario.xhtml" SHAPE="392,176,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#cadastrarUsuario.xhtml:0" NAME="item"
+   PATH="/cadastrarUsuario.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="erro::#cadastrarUsuario.xhtml" NAME="output"
+    PATH="/cadastrarUsuario.xhtml"
+    TARGET="rules:#cadastrarUsuario.xhtml" TITLE="erro" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#paginaPrincipal.xhtml"
+  PATH="/paginaPrincipal.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#paginaPrincipal.xhtml:0" NAME="item"
+   PATH="/paginaPrincipal.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="::#cadastrarEquipamento.xhtml" NAME="output"
+    PATH="/cadastrarEquipamento.xhtml"
+    TARGET="rules:#cadastrarEquipamento.xhtml" TITLE="[any]" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#paginaPrincipal.xhtml:1" NAME="item1"
+   PATH="/paginaPrincipal.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="::#cadastrarUsuario.xhtml" NAME="output"
+    PATH="/cadastrarUsuario.xhtml"
+    TARGET="rules:#cadastrarUsuario.xhtml" TITLE="[any]" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#index.xhtml:0" NAME="item"
+   PATH="/index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="::#paginaPrincipal.xhtml" NAME="output"
+    PATH="/paginaPrincipal.xhtml" TARGET="rules:#paginaPrincipal.xhtml"
+    TITLE="[any]" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#cadastrarEquipamento.xhtml"
+  PATH="/cadastrarEquipamento.xhtml" SHAPE="488,48,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#cadastrarEquipamento.xhtml:0" NAME="item"
+   PATH="/cadastrarEquipamento.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cadastarEquipamento::#cadastrarEquipamento.xhtml" NAME="output"
+    PATH="/cadastrarEquipamento.xhtml"
+    TARGET="rules:#cadastrarEquipamento.xhtml"
+    TITLE="cadastarEquipamento" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

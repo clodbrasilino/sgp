@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14722477344550" configfile="/sgp/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="178" id="pf14728575460562" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14736274517180" path="/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="cadastrarEquipamento.xhtml" x="122" y="562" id="pf14728575460564" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf14728607423555" inlinks="pf14728607423555" path="/cadastrarEquipamento.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="cadastrarUsuario.xhtml" x="338" y="178" id="pf14736274517391" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf14736274517392" inlinks="pf14736274517180 pf14736274517392" path="/cadastrarUsuario.xhtml"/>
-  <links id="pf14736274517180" target="pf14736274517391" source="pf14728575460562" outcome="cadastrarEquipamento"/>
-  <links id="pf14728607423555" target="pf14728575460564" source="pf14728575460564" outcome="cadastrarEquipamento">
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="48" y="36" id="pf14728575460562" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf14759725473682" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cadastrarEquipamento.xhtml" x="468" y="48" id="pf14728575460564" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf14760522466090" inlinks="pf14740638442760 pf14760522466090" path="/cadastrarEquipamento.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cadastrarUsuario.xhtml" x="456" y="168" id="pf14736274517391" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf14740675423922" inlinks="pf14740675423922 pf14760469030380" path="/cadastrarUsuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="paginaPrincipal.xhtml" x="276" y="48" id="pf14759725473693" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf14740638442760 pf14760469030380" inlinks="pf14759725473682" path="/paginaPrincipal.xhtml"/>
+  <links id="pf14740675423922" target="pf14736274517391" source="pf14736274517391" outcome="erro">
     <bendPoints d1Height="-36" d2Height="-36"/>
-    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
-    <bendPoints d1Width="-64" d2Width="-64"/>
+    <bendPoints d1Width="56" d1Height="-36" d2Width="56" d2Height="-36"/>
+    <bendPoints d1Width="52" d1Height="1" d2Width="52" d2Height="1"/>
   </links>
-  <links id="pf14736274517392" target="pf14736274517391" source="pf14736274517391" outcome="cadastrarUsuario">
+  <links id="pf14740638442760" target="pf14728575460564" source="pf14759725473693"/>
+  <links id="pf14759725473682" target="pf14759725473693" source="pf14728575460562"/>
+  <links id="pf14760469030380" target="pf14736274517391" source="pf14759725473693"/>
+  <links id="pf14760522466090" target="pf14728575460564" source="pf14728575460564" outcome="cadastarEquipamento">
     <bendPoints d1Height="-36" d2Height="-36"/>
     <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
     <bendPoints d1Width="-64" d2Width="-64"/>
