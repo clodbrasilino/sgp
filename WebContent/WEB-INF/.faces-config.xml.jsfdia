@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:#cadastrarUsuario.xhtml"
-  PATH="/cadastrarUsuario.xhtml" SHAPE="392,176,50,41" model-entity="JSFProcessGroup">
+  PATH="/cadastrarUsuario.xhtml" SHAPE="352,184,50,41" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#cadastrarUsuario.xhtml:0" NAME="item"
    PATH="/cadastrarUsuario.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="erro::#cadastrarUsuario.xhtml" NAME="output"
@@ -34,7 +34,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#cadastrarEquipamento.xhtml"
-  PATH="/cadastrarEquipamento.xhtml" SHAPE="488,48,50,41" model-entity="JSFProcessGroup">
+  PATH="/cadastrarEquipamento.xhtml" SHAPE="544,80,50,41" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#cadastrarEquipamento.xhtml:0" NAME="item"
    PATH="/cadastrarEquipamento.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT

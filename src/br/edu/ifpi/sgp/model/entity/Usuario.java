@@ -5,9 +5,12 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="Usuario")
 public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -20,7 +23,9 @@ public class Usuario implements Serializable{
 	public Usuario() {
 	}
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idUsuario")
 	public long getIdUsuario() {
 		return idUsuario;
 	}
@@ -29,6 +34,7 @@ public class Usuario implements Serializable{
 		this.idUsuario = idUsuario;
 	}
 
+	@Column(name="nome")
 	public String getNome() {
 		return nome;
 	}
@@ -44,7 +50,7 @@ public class Usuario implements Serializable{
 	public void setSiape(String siape) {
 		this.siape = siape;
 	}
- 
+	@Column(name="status")
 	public boolean isStatus() {
 		return status;
 	}

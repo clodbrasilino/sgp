@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -11,17 +11,18 @@
 	<ui:define name="content">
 		<h:form>
 			<p:growl id="msgs" showDetail="true" />
-			<p:fieldset legend="Faça seu Login" style="margin-bottom:10px">
-	        	<h:panelGrid columns="2" cellpadding="3">
-	        		<p:outputLabel value="Login: " />
+			<p:fieldset legend="Faça seu Login" style="margin-bottom:10px;" >
+				<h:panelGrid columns="2" cellpadding="3">
+					<p:outputLabel value="Login: " />
 					<p:inputText value="#{usuarioBean.login}"
-						requiredMessage="Informe o seu login" required="true" />
+						requiredMessage="Informe o seu login" required="true" placeholder="Digite seu email"/>
 					<p:outputLabel value="SIAPE:" />
 					<p:inputText value="#{usuarioBean.siape}"
-						requiredMessage="Informe o seu SIAPE" rendered="true" />
-					<p:commandButton value="Entrar" action="{usuarioBean.fazerLogin}"/>
-	        	</h:panelGrid>
-        	</p:fieldset>
+						requiredMessage="Informe o seu SIAPE" rendered="true" placeholder="Digite seu SIAPE"/>
+					<p:commandButton value="Enviar" icon="ui-icon-star" action="#{usuarioBean.fazerLogin}" ajax="false"/>
+				</h:panelGrid>
+			<h:messages for="usuarioForm"/>
+			</p:fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -2,20 +2,24 @@ package br.edu.ifpi.sgp.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Entity implementation class for Entity: Equipamento
  *
  */
 @Entity
+@Table(name="Equipamento")
 public class Equipamento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
+	private Integer idEquipamento;
 	private String nome;
 	private Boolean disponivel;
 
@@ -24,15 +28,17 @@ public class Equipamento implements Serializable {
 
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idEquipamento")
 	public Integer getId() {
-		return id;
+		return idEquipamento;
 	}
 	
 	public void setId(Integer id) {
-		this.id = id;
+		this.idEquipamento = id;
 	}
 
+	@Column(name="nome")
 	public String getNome() {
 		return nome;
 	}
@@ -41,6 +47,7 @@ public class Equipamento implements Serializable {
 		this.nome = nome;
 	}
 
+	@Column(name="disponivel")
 	public Boolean getDisponivel() {
 		return disponivel;
 	}
@@ -53,7 +60,7 @@ public class Equipamento implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((idEquipamento == null) ? 0 : idEquipamento.hashCode());
 		return result;
 	}
 
@@ -66,10 +73,10 @@ public class Equipamento implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Equipamento other = (Equipamento) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (idEquipamento == null) {
+			if (other.idEquipamento != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!idEquipamento.equals(other.idEquipamento))
 			return false;
 		return true;
 	}

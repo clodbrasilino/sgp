@@ -3,17 +3,75 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/template/layout.xhtml">
 	<ui:define name="content">
-		<div class="formCorpo" align="center">
-			 <h1>Bem Vindo</h1>
-			 <h:outputLink value="cadastrarUsuario.xhtml">
-					<h:outputText value="Cadastrar Novo Usuário" />				
+		<p:growl id="msgs" showDetail="true" />
+		<p:tabView>
+			<p:tab title="Meu Perfil">
+				<!-- Conteudo -->
+				<h:form>
+					<h:graphicImage id="imgUsuario" url="img/ifpi_cabecalho.jpg" />
+					<br />
+					<br />
+					<p:commandButton value="Alterar Imagem" icon="ui-icon-star"
+						action="#{usuarioBean.editarUsuario}" ajax="false" />
+					<br />
+					<br />
+					<p:outputLabel value="Login: " />
+					<p:inputText value="#{usuarioBean.login}"
+						requiredMessage="Informe o seu login" required="true" />
+					<br />
+					<br />
+					<p:outputLabel value="Login: " />
+					<p:inputText value="#{usuarioBean.login}"
+						requiredMessage="Informe o seu login" required="true" />
+					<br />
+					<br />
+					<p:outputLabel value="Login: " />
+					<p:inputText value="#{usuarioBean.login}"
+						requiredMessage="Informe o seu login" required="true" />
+					<br />
+					<br />
+					<p:outputLabel value="Login: " />
+					<p:inputText value="#{usuarioBean.login}"
+						requiredMessage="Informe o seu login" required="true" />
+					<br />
+					<br />
+					<p:outputLabel value="Login: " />
+					<p:inputText value="#{usuarioBean.login}"
+						requiredMessage="Informe o seu login" required="true" />
+					<br />
+					<br />
+					<p:commandButton value="Salvar alterações" icon="ui-icon-star"
+						action="#{usuarioBean.editarUsuario}" ajax="false" />
+					<p:commandButton value="Cancelar" icon="ui-icon-star" ajax="false" />
+				</h:form>
+			</p:tab>
+			<p:tab title="Sala de Cadastros">
+				<!-- Conteudo -->
+				<h:outputLink value="cadastrarUsuario.xhtml">
+					<h:outputText value="Cadastrar Novo Usuário" />
 				</h:outputLink>
-			<h:messages for="messages"></h:messages>
-		</div>
+				<br />
+				<br />
+				<h:outputLink value="cadastrarEquipamento.xhtml">
+					<h:outputText value="Cadastrar Novo Equipamento" />
+				</h:outputLink>
+			</p:tab>
+			<p:tab title="Sala de Equipamento">
+				<h:panelGrid columns="2" cellpadding="10">
+					<!-- Conteudo -->
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="Sala de Horários">
+				<h:panelGrid columns="2" cellpadding="10">
+					<!-- Conteudo -->
+				</h:panelGrid>
+			</p:tab>
+		</p:tabView>
 	</ui:define>
 </ui:composition>
 </html>

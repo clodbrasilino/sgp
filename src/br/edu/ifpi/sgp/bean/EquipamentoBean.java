@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.edu.ifpi.sgp.model.dao.EquipamentoDAO;
@@ -14,10 +14,11 @@ import br.edu.ifpi.sgp.model.dao.EquipamentoDAOImpl;
 import br.edu.ifpi.sgp.model.entity.Equipamento;
 
 @ManagedBean(name="equipamentoBean")
-@SessionScoped
+@ViewScoped
 public class EquipamentoBean implements Serializable {
 
-	private static final long serialVersionUID = 448255897681360861L;
+	private static final long serialVersionUID = 1L;
+	
 	private EquipamentoDAO equipamentoDAO;
 	private List<Equipamento> listaDeEquipamentos;
 	private String nome;

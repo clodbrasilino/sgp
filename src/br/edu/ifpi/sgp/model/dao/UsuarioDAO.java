@@ -19,4 +19,6 @@ public interface UsuarioDAO {
     public List<Usuario> listaUsuario();
     
     public List<Usuario> pesquisarUsuario(String nome);
+    
+    public Long contador();
 }

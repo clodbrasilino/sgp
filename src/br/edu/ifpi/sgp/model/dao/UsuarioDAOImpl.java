@@ -3,7 +3,12 @@ package br.edu.ifpi.sgp.model.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Root;
 
 import br.edu.ifpi.sgp.model.entity.Usuario;
 
@@ -33,6 +38,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	@Override
 	public void excluirUsuario(Usuario usuario) {
 		try {
+			entityManager = JPAConexao.getEntityManager();
 			entityManager.getTransaction().begin();
 			Usuario aSerApagado = buscarUsuarioPorId(usuario.getIdUsuario());
 			entityManager.remove(aSerApagado);
@@ -40,7 +46,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		} catch (Exception ex) {
 			entityManager.getTransaction().rollback();
 		} finally {
-			JPAConexao.closeEntityManager();
+			if (JPAConexao.isEntityManagerOpen())
+				JPAConexao.closeEntityManager();
 		}
 	}
 
@@ -55,16 +62,19 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@Override
-	public Usuario buscarUsuarioNomeSenha(String login, String siape){
+	public Usuario buscarUsuarioNomeSenha(String login, String siape) {
 		try {
+			entityManager.getTransaction().begin();
 			Usuario usuario = (Usuario) entityManager
 					.createQuery("SELECT u from Usuario u where u.login = :login and u.siape = :siape")
 					.setParameter("login", login).setParameter("siape", siape).getSingleResult();
-			System.out.println("usuario -> " + usuario.toString());
 			return usuario;
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			System.out.println("erro -> " + e.toString());
 			return null;
+		} finally {
+			if (JPAConexao.isEntityManagerOpen())
+				JPAConexao.closeEntityManager();
 		}
 	}
 
@@ -76,5 +86,20 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	@Override
 	public List<Usuario> pesquisarUsuario(String nome) {
 		return null;
+	}
+
+	@Override
+	public Long contador() {
+		try {
+			entityManager = JPAConexao.getEntityManager();
+			entityManager.getTransaction().begin();
+			Long count = entityManager.createQuery("select count(*) from Usuario u", Long.class).getSingleResult();
+			return count; 
+		}catch (Exception e) {
+			return null;
+		} finally {
+			if (JPAConexao.isEntityManagerOpen())
+				JPAConexao.closeEntityManager();
+		}
 	}
 }

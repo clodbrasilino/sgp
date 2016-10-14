@@ -7,20 +7,32 @@ package br.edu.ifpi.sgp.model.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
- * @author Agustin
+ * @author Patrick
  */
+@Entity
+@Table(name="Turma")
 public class Turma {
     private long idTurma;
     private Coordenacao coordenacao;
-    private String Turno;
+    private String turno;
     private String anoLetivo;
     private List<Materia> materias;
 
     public Turma() {
     }
 
+    @Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="idTurma")
     public long getIdTurma() {
         return idTurma;
     }
@@ -28,7 +40,8 @@ public class Turma {
     public void setIdTurma(long idTurma) {
         this.idTurma = idTurma;
     }
-
+    
+    @Column(name="coordenacao")
     public Coordenacao getCoordenacao() {
         return coordenacao;
     }
@@ -36,15 +49,17 @@ public class Turma {
     public void setCoordenacao(Coordenacao coordenacao) {
         this.coordenacao = coordenacao;
     }
-
+    
+    @Column(name="turno")
     public String getTurno() {
-        return Turno;
+        return turno;
     }
 
-    public void setTurno(String Turno) {
-        this.Turno = Turno;
+    public void setTurno(String turno) {
+        this.turno = turno;
     }
-
+    
+    @Column(name="anoLetivo")
     public String getAnoLetivo() {
         return anoLetivo;
     }
@@ -77,11 +92,4 @@ public class Turma {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "Turma{" + "idTurma=" + idTurma + ", coordenacao=" + coordenacao + ", Turno=" + Turno + ", anoLetivo=" + anoLetivo + '}';
-    }
-    
-    
 }

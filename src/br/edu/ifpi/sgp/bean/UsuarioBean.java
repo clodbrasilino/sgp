@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import br.edu.ifpi.sgp.model.dao.UsuarioDAO;
@@ -13,11 +13,11 @@ import br.edu.ifpi.sgp.model.dao.UsuarioDAOImpl;
 import br.edu.ifpi.sgp.model.entity.Usuario;
 
 @ManagedBean(name = "usuarioBean")
-@SessionScoped
+@ViewScoped
 public class UsuarioBean implements Serializable {
 
-	private static final long serialVersionUID = -5077573585589611427L;
-
+	private static final long serialVersionUID = 1L;
+	
 	private String login, siape, nome;
 	private UsuarioDAO usuarioDAOImpl;
 	private Usuario usuario = new Usuario();
@@ -31,52 +31,73 @@ public class UsuarioBean implements Serializable {
 
 	public String adicionarUsuario() {
 		try {
-			if (nome.isEmpty() || login.isEmpty() || siape.isEmpty()) {
+			if (getLogin().isEmpty() || getSiape().isEmpty()) {
 				FacesContext.getCurrentInstance().addMessage("usuarioForm",
-						new FacesMessage(FacesMessage.SEVERITY_INFO, "Campos Inv√°lidos", ""));
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Campos Inv·lidos", ""));
 			} else {
 				Usuario usuario = new Usuario();
-				usuario.setNome(nome);
-				usuario.setLogin(login);
-				usuario.setSiape(siape);
+				usuario.setNome(getNome());
+				usuario.setLogin(getLogin());
+				usuario.setSiape(getSiape());
 				usuario.setStatus(true);
 				// bucar por Siape antes de cadastrar novo
 				this.usuarioDAOImpl.adicionarUsuario(usuario);
 				FacesContext.getCurrentInstance().addMessage("usuarioForm",
-						new FacesMessage(FacesMessage.SEVERITY_INFO, "Usu√°rio cadastrado com sucesso!", ""));
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Usu·rio cadastrado com sucesso!", ""));
 			}
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage("usuarioForm",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro ao cadastrar usuario", e.getMessage()));
-			return "erro";
 		} finally {
 			return "cadastrarUsuario";
 		}
 	}
 
 	/**
-	 * M√©todo faz login do usu√°rio
+	 * MÈtodo faz login do usu·rio
 	 */
 	public String fazerLogin() {
-		usuario = usuarioDAOImpl.buscarUsuarioNomeSenha(login, siape);
-		if (usuario == null) {
-			usuario = new Usuario();
-            FacesContext.getCurrentInstance().addMessage("usuarioForm",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Usu√°rio n√£o encontrado!", "Login Inv√°lido"));
-            return null;
-		}else{
-			System.out.println("Usuario encontrado -> " + usuario.toString());
-			return "paginaPrincipal";
+		try {
+			// verificando se È o primero usuario
+			//verifica qnt de usuario do sistema, caso n„o tenha, È criado um aqui com dados da session
+			Long count = usuarioDAOImpl.contador(); // retorna o numero de linhas da coluna 
+			if (count == 0) {
+				adicionarUsuario();
+				FacesContext.getCurrentInstance().addMessage("usuarioForm",
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Login com sucesso!", ""));
+				return "paginaPrincipal";
+			}else if(count > 0){
+				usuario = usuarioDAOImpl.buscarUsuarioNomeSenha(getLogin(), getSiape());
+				if (usuario == null) {
+					FacesContext.getCurrentInstance().addMessage("usuarioForm",
+							new FacesMessage(FacesMessage.SEVERITY_INFO, "Usu·rio n„o encontrado!", "Login Inv·lido"));
+					return null;
+				}else{
+					FacesContext.getCurrentInstance().addMessage("usuarioForm",
+							new FacesMessage(FacesMessage.SEVERITY_INFO, "Login com sucesso!", ""));
+					return "paginaPrincipal";
+				}
+			}else{
+				return null;
+			}
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage("usuarioForm",
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Usu·rio n„o encontrado!", e.toString()));
+			System.out.println("Exception  -> " + e.toString());
+			return null;
 		}
 	}
-
 	/**
-	 * M√©todo faz logout do usu√°rio
+	 * faz logout do Usu·rio
 	 */
 	public String fazerLogout() {
 		return "fazerLogout";
 	}
-
+	
+	public String editarUsuario(){
+		return "";
+	}
+	
 	public String getLogin() {
 		return login;
 	}
