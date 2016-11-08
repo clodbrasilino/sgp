@@ -12,7 +12,6 @@ public class EquipamentoDAOImpl implements EquipamentoDAO {
 	
 	@Override
 	public void adicionarEquipamento(Equipamento e) {
-		// TODO Auto-generated method stub
 		try{
 			entityManager = JPAConexao.getEntityManager();
 			entityManager.getTransaction().begin();
@@ -21,7 +20,7 @@ public class EquipamentoDAOImpl implements EquipamentoDAO {
 		} catch(Exception ex){
 			entityManager.getTransaction().rollback();
 		}finally {
-			if(JPAConexao.isEntityManagerOpen()) JPAConexao.closeEntityManager();
+			entityManager.close();
 		}
 		
 	}
@@ -34,6 +33,7 @@ public class EquipamentoDAOImpl implements EquipamentoDAO {
 	
 	public void removerEquipamento(Equipamento e){
 		try{
+			entityManager = JPAConexao.getEntityManager();
 			entityManager.getTransaction().begin();
 			Equipamento aSerApagado = entityManager.find(Equipamento.class,e.getId());
 			entityManager.remove(aSerApagado);
@@ -41,7 +41,7 @@ public class EquipamentoDAOImpl implements EquipamentoDAO {
 		} catch(Exception ex){
 			entityManager.getTransaction().rollback();
 		}finally {
-			JPAConexao.closeEntityManager();
+			entityManager.close();
 		}
 	}
 

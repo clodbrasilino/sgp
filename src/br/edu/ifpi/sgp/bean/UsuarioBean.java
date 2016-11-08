@@ -60,6 +60,7 @@ public class UsuarioBean implements Serializable {
 		try {
 			// verificando se é o primero usuario
 			//verifica qnt de usuario do sistema, caso não tenha, é criado um aqui com dados da session
+			System.out.println("blaaaaa");
 			Long count = usuarioDAOImpl.contador(); // retorna o numero de linhas da coluna 
 			if (count == 0) {
 				adicionarUsuario();
@@ -83,7 +84,7 @@ public class UsuarioBean implements Serializable {
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage("usuarioForm",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário não encontrado!", e.toString()));
-			System.out.println("Exception  -> " + e.toString());
+			e.printStackTrace();
 			return null;
 		}
 	}

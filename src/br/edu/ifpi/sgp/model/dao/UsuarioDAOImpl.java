@@ -3,12 +3,6 @@ package br.edu.ifpi.sgp.model.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Root;
 
 import br.edu.ifpi.sgp.model.entity.Usuario;
 
@@ -30,8 +24,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		} catch (Exception ex) {
 			entityManager.getTransaction().rollback();
 		} finally {
-			if (JPAConexao.isEntityManagerOpen())
-				JPAConexao.closeEntityManager();
+			entityManager.close();
 		}
 	}
 
@@ -46,8 +39,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		} catch (Exception ex) {
 			entityManager.getTransaction().rollback();
 		} finally {
-			if (JPAConexao.isEntityManagerOpen())
-				JPAConexao.closeEntityManager();
+			entityManager.close();
 		}
 	}
 
@@ -58,23 +50,26 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 	@Override
 	public Usuario buscarUsuarioPorId(long idUsuario) {
+		entityManager = JPAConexao.getEntityManager();
 		return (Usuario) entityManager.find(Usuario.class, idUsuario);
 	}
 
 	@Override
 	public Usuario buscarUsuarioNomeSenha(String login, String siape) {
 		try {
+			entityManager = JPAConexao.getEntityManager();
 			entityManager.getTransaction().begin();
 			Usuario usuario = (Usuario) entityManager
 					.createQuery("SELECT u from Usuario u where u.login = :login and u.siape = :siape")
 					.setParameter("login", login).setParameter("siape", siape).getSingleResult();
+			entityManager.getTransaction().commit();
 			return usuario;
 		} catch (Exception e) {
-			System.out.println("erro -> " + e.toString());
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
 			return null;
 		} finally {
-			if (JPAConexao.isEntityManagerOpen())
-				JPAConexao.closeEntityManager();
+			entityManager.close();
 		}
 	}
 
@@ -90,16 +85,18 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 	@Override
 	public Long contador() {
+		Long count = -1L;
 		try {
 			entityManager = JPAConexao.getEntityManager();
 			entityManager.getTransaction().begin();
-			Long count = entityManager.createQuery("select count(*) from Usuario u", Long.class).getSingleResult();
-			return count; 
+			count = entityManager.createQuery("select count(u) from Usuario u", Long.class).getSingleResult();
+			entityManager.getTransaction().commit();
 		}catch (Exception e) {
-			return null;
+			e.printStackTrace();
+			entityManager.getTransaction().rollback();
 		} finally {
-			if (JPAConexao.isEntityManagerOpen())
-				JPAConexao.closeEntityManager();
+			entityManager.close();
 		}
+		return count;
 	}
 }

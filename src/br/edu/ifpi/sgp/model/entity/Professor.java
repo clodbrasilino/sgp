@@ -6,8 +6,6 @@
 package br.edu.ifpi.sgp.model.entity;
 
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 /**
  *
